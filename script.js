@@ -9,7 +9,7 @@ function playSound(e) {
 
   if (!audio) return; // Return if no audio element found
   audio.currentTime = 0; // Rewind to the start
-  audio.play(); // Play the audio
+  audio.play(); // Play the audi
 
   // Add a class to the key element for visual effect
   key.classList.add('playing');
