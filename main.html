@@ -1,26 +1,90 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-	<audio data-key="65" src="path_to_audio_file.mp3"></audio>
-<audio data-key="83" src="path_to_audio_file.mp3"></audio>
-<audio data-key="68" src="path_to_audio_file.mp3"></audio>
-<audio data-key="70" src="path_to_audio_file.mp3"></audio>
-<audio data-key="71" src="path_to_audio_file.mp3"></audio>
-<audio data-key="72" src="path_to_audio_file.mp3"></audio>
-<audio data-key="74" src="path_to_audio_file.mp3"></audio>
-<audio data-key="75" src="path_to_audio_file.mp3"></audio>
-<audio data-key="76" src="path_to_audio_file.mp3"></audio>
+  <div class="keys">
+    <div class="key" data-key="65">A</div>
+    <div class="key" data-key="83">S</div>
+    <div class="key" data-key="68">D</div>
+    <div class="key" data-key="70">F</div>
+    <div class="key" data-key="71">G</div>
+    <div class="key" data-key="72">H</div>
+    <div class="key" data-key="74">J</div>
+    <div class="key" data-key="75">K</div>
+    <div class="key" data-key="76">L</div>
+  </div>
 
-    <script type="text/javascript" src="./script.js">
-</script>
+  <script>
+    // Function to play the sound
+    function playSound(e) {
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
 
+      if (!audio) return; // Return if no audio element found
+
+      audio.currentTime = 0; // Rewind to the start
+      audio.play(); // Play the audio
+
+      key.classList.add('playing'); // Add a class to the key element for visual effect
+    }
+
+    // Function to remove the visual effect class
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return;
+      this.classList.remove('playing');
+    }
+
+    // Add event listener for keydown event
+    window.addEventListener('keydown', playSound);
+
+    // Get all the keys and attach transitionend event listener to each
+    const keys = Array.from(document.querySelectorAll('.key'));
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script>
+    const soundA = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundS = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundD = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundF = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundG = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundH = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundJ = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundK = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+    const soundL = new Howl({ src: ['https://pixabay.com/sound-effects/clap-4294.mp3'] });
+
+    const keyA = document.querySelector('.key[data-key="65"]');
+    const keyS = document.querySelector('.key[data-key="83"]');
+    const keyD = document.querySelector('.key[data-key="68"]');
+    const keyF = document.querySelector('.key[data-key="70"]');
+    const keyG = document.querySelector('.key[data-key="71"]');
+    const keyH = document.querySelector('.key[data-key="72"]');
+    const keyJ = document.querySelector('.key[data-key="74"]');
+    const keyK = document.querySelector('.key[data-key="75"]');
+    const keyL = document.querySelector('.key[data-key="76"]');
+
+    keyA.addEventListener('click', () => soundA.play());
+    keyS.addEventListener('click', () => soundS.play());
+    keyD.addEventListener('click', () => soundD.play());
+    keyF.addEventListener('click', () => soundF.play());
+    keyG.addEventListener('click', () => soundG.play());
+    keyH.addEventListener('click', () => soundH.play());
+    keyJ.addEventListener('click', () => soundJ.play());
+    keyK.addEventListener('click', () => soundK.play());
+    keyL.addEventListener('click', () => soundL.play());
+  </script>
 </body>
-
 </html>
