@@ -7,9 +7,9 @@ function playSound(e) {
   // Find the key element associated with the pressed key
   const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 
-  if (!audio) return; // Return if no audio element found
-  audio.currentTime = 0; // Rewind to the start
-  audio.play(); // Play the audi
+  if (!audio) return;
+  audio.currentTime = 0; 
+  audio.play(); 
 
   // Add a class to the key element for visual effect
   key.classList.add('playing');
@@ -21,7 +21,7 @@ function removeTransition(e) {
   this.classList.remove('playing');
 }
 
-// Add event listener for keydown event
+
 window.addEventListener('keydown', playSound);
 
 // Get all the keys and attach transitionend event listener to each
